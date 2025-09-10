@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nkheso | Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ------------------------------
+       Global Styles & Reset
+    ------------------------------ */
+    :root {
+      --primary: #8b5cf6;
+      --primary-dark: #7c3aed;
+      --secondary: #3b82f6;
+      --dark: #1c0e30;
+      --light: #fdfaf3;
+      --gray: #6b7280;
+      --gray-light: #e5e7eb;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--light);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    h1, h2, h3, h4 {
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+
+    p {
+      margin-bottom: 15px;
+      color: var(--gray);
+    }
+
+    /* ------------------------------
+       Navigation Bar
+    ------------------------------ */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    
+    .logo span {
+      color: var(--primary);
+      margin-right: 5px;
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-links li {
+      margin-left: 30px;
+      position: relative;
+    }
+    
+    .nav-links a {
+      color: var(--dark);
+      font-weight: 500;
+      font-size: 17px;
+      padding: 10px 0;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    .nav-links a.active {
+      color: var(--primary);
+    }
+    
+    .nav-links a.active::after {
+      width: 100%;
+    }
+    
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: var(--dark);
+      font-size: 24px;
+    }
+
+    /* ------------------------------
+       Buttons
+    ------------------------------ */
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-weight: 600;
+      margin-right: 15px;
+      color: #fff;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* ------------------------------
+       Hero Section
+    ------------------------------ */
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 100vh;
+      padding: 60px 0;
+    }
+
+    .hero-text {
+      max-width: 600px;
+    }
+
+    .hero-text h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .hero-text h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .hero-img { 
+      position: relative; 
+      width: 350px; 
+      height: 350px;
+    } 
+    
+    .hero-img img { 
+      width: 200%; 
+      height: 200%; 
+      object-fit: cover; 
+      border-radius: 50%; 
+      border: 4px solid var(--primary); 
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); 
+      animation: float 6s ease-in-out infinite;
+      transform: translate(-30px, -30px); 
+    }
+
+    .socials {
+      margin: 20px 0;
+    }
+
+    .socials a {
+      display: inline-block;
+      width: 45px;
+      height: 45px;
+      background: var(--dark);
+      border-radius: 50%;
+      margin-right: 15px;
+      text-align: center;
+      line-height: 45px;
+      transition: all 0.3s ease;
+    }
+
+    .socials a:hover {
+      background: var(--primary);
+      transform: translateY(-5px);
+    }
+
+    .socials i {
+      font-size: 20px;
+      color: white;
+      vertical-align: middle;
+    }
+
+    /* ------------------------------
+       About Section
+    ------------------------------ */
+    .about-flex {
+      display: flex;
+      align-items: flex-start;
+      gap: 50px;
+    }
+
+    .about-img {
+      width: 280px;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 4px solid var(--primary);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-text h2 {
+      margin-bottom: 25px;
+    }
+
+    /* ------------------------------
+       Carousel Sections
+    ------------------------------ */
+    .carousel-container {
+      position: relative;
+      margin: 40px 0;
+      overflow: hidden;
+    }
+
+    .carousel {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .carousel-item {
+      flex: 0 0 auto;
+      width: 300px;
+      margin-right: 30px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .carousel-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .carousel-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.9);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--dark);
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 10;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .carousel-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .carousel-btn.prev {
+      left: -25px;
+    }
+
+    .carousel-btn.next {
+      right: -25px;
+    }
+
+    /* ------------------------------
+       Cards Container
+    ------------------------------ */
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-image {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .card-image img {
+      transform: scale(1.1);
+    }
+
+    .gradient-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.5), transparent 60%);
+    }
+
+    .floating-buttons {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      display: flex;
+      gap: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover .floating-buttons {
+      opacity: 1;
+    }
+
+    .floating-button {
+      background: rgba(255, 255, 255, 0.9);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease;
+    }
+
+    .floating-button:hover {
+      background: white;
+      transform: scale(1.1);
+    }
+
+    .project-icon {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 24px;
+      color: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 10px;
+      transition: color 0.3s ease;
+    }
+
+    .card:hover .project-title {
+      color: var(--primary);
+    }
+
+    .project-description {
+      color: var(--gray);
+      margin-bottom: 15px;
+    }
+
+    .view-project-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .view-project-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+    }
+
+    /* Project Links Modal */
+    .project-links-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .modal-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .modal-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .modal-btn.github {
+      background: #333;
+      color: white;
+    }
+
+    .modal-btn.github:hover {
+      background: #24292e;
+    }
+
+    .modal-btn.live {
+      background: var(--primary);
+      color: white;
+    }
+
+    .modal-btn.live:hover {
+      background: var(--primary-dark);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--gray);
+    }
+
+    /* ------------------------------
+       Experience Section
+    ------------------------------ */
+    .experience-item {
+      margin-bottom: 30px;
+      padding: 25px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .experience-item h3 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .experience-item em {
+      color: var(--gray);
+      display: block;
+      margin-bottom: 15px;
+    }
+
+     /* ------------------------------
+     Skills Section
+    ------------------------------ */
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .skill-card {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary), var(--secondary));
+      transition: width 0.3s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .skill-card:hover::before {
+      width: 100%;
+      opacity: 0.1;
+    }
+
+    .skill-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .skill-card:hover .skill-icon {
+      transform: scale(1.2);
+      color: var(--secondary);
+    }
+
+    .skill-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+
+    .skill-level {
+      height: 6px;
+      background: var(--gray-light);
+      border-radius: 3px;
+      overflow: hidden;
+      margin: 15px 0;
+    }
+
+    .skill-progress {
+      height: 100%;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      border-radius: 3px;
+      position: relative;
+      width: 0;
+      transition: width 1s ease-in-out;
+    }
+
+
+    /* ------------------------------
+       Certifications Section
+    ------------------------------ */
+    .certifications-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .certifications-gallery img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .certifications-gallery img:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    /* ------------------------------
+       Contact Section
+    ------------------------------ */
+    .contact-section {
+      background: white;
+      border-radius: 16px;
+      padding: 60px;
+      margin: 40px 0;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-header h2 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+    }
+
+    .section-header p {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+
+    .divider {
+      width: 80px;
+      height: 4px;
+      margin: 20px auto;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+    }
+
+    .contact-info h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .info-list {
+      list-style: none;
+      margin: 25px 0;
+    }
+
+    .info-list li {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .info-list strong {
+      min-width: 80px;
+      display: inline-block;
+      color: var(--dark);
+    }
+
+    .info-list a {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .info-list a:hover {
+      color: var(--secondary);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin: 25px 0;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: var(--dark);
+      color: white;
+      border-radius: 50%;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background: var(--primary);
+      transform: translateY(-5px);
+    }
+
+    .availability {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      background: limegreen;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    /* Contact form */
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 20px;
+    }
+
+    .form-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 15px;
+      border: 2px solid var(--gray-light);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+
+    .submit-button {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: #fff;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .submit-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+    }
+
+    /* ------------------------------
+       Footer
+    ------------------------------ */
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 40px 0;
+      margin-top: 80px;
+    }
+
+    footer .socials {
+      margin-bottom: 20px;
+    }
+
+    /* ------------------------------
+       Responsive Design
+    ------------------------------ */
+    @media (max-width: 992px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 50px;
+      }
+      
+      .hero-text {
+        max-width: 100%;
+      }
+      
+      .about-flex {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+      
+      .nav-links.active {
+        display: flex;
+      }
+      
+      .nav-links li {
+        margin: 15px 0;
+      }
+      
+      .hamburger {
+        display: block;
+      }
+      
+      .carousel-btn {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 60px 0;
+      }
+      
+      .hero-text h1 {
+        font-size: 2.8rem;
+      }
+      
+      .hero-text h2 {
+        font-size: 1.8rem;
+      }
+      
+      .hero-img img {
+        width: 280px;
+        height: 280px;
+      }
+      
+      .form-row {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .contact-section {
+        padding: 40px 30px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-text h1 {
+        font-size: 2.2rem;
+      }
+      
+      .hero-text h2 {
+        font-size: 1.5rem;
+      }
+      
+      .btn {
+        display: block;
+        margin: 0 auto 15px;
+        text-align: center;
+      }
+      
+      .hero-img img {
+        width: 220px;
+        height: 220px;
+      }
+      
+      .modal-buttons {
+        flex-direction: column;
+      }
+    }
+    
+    /* Welcome Animation */
+    #welcome-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: var(--dark);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      flex-direction: column;
+    }
+
+    .welcome-text {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: white;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .welcome-subtext {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-top: 20px;
+      opacity: 0;
+    }
+    
+    @keyframes float {
+      0% { transform: translate(-30px, -30px) translateY(0px); }
+      50% { transform: translate(-30px, -30px) translateY(-20px); }
+      100% { transform: translate(-30px, -30px) translateY(0px); }
+    }
+  </style>
+</head>
+<body>
+<!-- Welcome Animation -->
+  <div id="welcome-animation">
+    <div class="welcome-text">Welcome to Nkheso's Portfolio</div>
+    <div class="welcome-subtext">Junior Developer & Digital Associate</div>
+  </div>
+  
+  <!-- Navigation Bar -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">
+          <span>Nkheso</span>Mathebula
+        </a>
+        
+        <ul class="nav-links">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#my-work">My Work</a></li>
+          <li><a href="#featured-projects">Featured Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        
+        <button class="hamburger">
+          <i class="fas fa-bars"></i>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero" style="min-height: 100vh; position: relative; overflow: hidden; padding-bottom: 80px;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; position: relative;">
+      <div class="hero-img" style="position: relative; left: -100px; z-index: 1;">
+        <img src="Media (2).jfif" alt="Nkheso" style="max-height: 70vh; width: -170px;">
+      </div>
+
+      <div class="hero-text" style="margin-left: auto; max-width: 600px; padding-right: 20px; position: relative; z-index: 2;">
+        <h1>Hello, I'm <span style="color: var(--primary);">Nkheso</span></h1>
+        <h2>Junior Developer & Digital Associate</h2>
+        <p>A passionate developer and digital associate with experience in web, and AI-powered applications. I create clean, engaging, and functional digital experiences, constantly exploring innovative solutions and learning new technologies to deliver impactful results.</p>
+        
+        <!-- Social Links -->
+        <div class="socials">
+          <a href="https://www.linkedin.com/in/mathebula-nkheso-26b8b6272/" target="_blank">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://github.com/nkheso" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="mailto:mathebulankheso8@gmail.com">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+
+        <!-- Buttons -->
+        <div class="btns">
+          <a href="#contact" class="btn">Get In Touch</a>
+          <a href="khensos.pdf" class="btn" download="Nkheso_Resume.pdf">Download Resume</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" style="margin-top: 40px; position: relative; z-index: 3; background: var(--light);">
+    <div class="container">
+      <div class="about-flex">
+        <img src="rito.jfif" alt="Nkheso Mathebula" class="about-img">
+        <div class="about-text">
+          <h2>About Me</h2>
+          <p>
+            Passionate Junior Developer & Digital Associate<br><br>
+            I am a motivated Digital Associate and Junior Developer with a passion for technology, problem-solving, and creating user-friendly digital solutions. With a foundation in web development using HTML, CSS, and JavaScript, I enjoy building responsive designs and exploring modern frameworks while also supporting digital content management and workflow processes. I thrive in collaborative environments, continuously learning and applying new skills to deliver efficient, innovative solutions that bridge both technical and creative needs.<br><br>
+            Woodstock, Cape Town<br>
+            Available for new opportunities
+          </p>
+          
+          <a href="khensos.pdf" class="btn" download="Nkheso_Resume.pdf">Hire Me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects Section -->
+  <section class="projects-section" id="featured-projects">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 20px;">Featured Projects</h2>
+      <p style="text-align: center; max-width: 700px; margin: 0 auto 40px;">Here are some of my highlighted projects showcasing my skills and expertise.</p>
+      
+      <div class="carousel-container">
+        <button class="carousel-btn prev" id="featured-left">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="carousel" id="featured-carousel">
+          <!-- Project Card 1 -->
+          <div class="carousel-item">
+            <img src="sentiment.png" alt="Sentiment Analysis Dashboard">
+            <div class="card-content">
+              <h3 class="project-title">Sentiment Analysis Dashboard</h3>
+              <p class="project-description">Real-time sentiment analysis tool built with Python and Streamlit</p>
+              <button class="view-project-btn" onclick="showProjectModal('https://github.com/nkheso/sentiment-analysis-dashboard', 'https://sentiment-analysis-dashboard-main-6a2ypaqfjzaptmzyr66rbx.streamlit.app/')">
+                View Project
+              </button>
+            </div>
+          </div>
+
+          <!-- Project Card 2 -->
+          <div class="carousel-item">
+            <img src="chatbot.png" alt="AI Chatbot">
+            <div class="card-content">
+              <h3 class="project-title">AI Chatbot</h3>
+              <p class="project-description">Intelligent chatbot powered by machine learning</p>
+              <button class="view-project-btn" onclick="showProjectModal('https://github.com/nkheso/ai-chatbot', 'https://ai-chatbot-seven-coral.vercel.app/')">
+                View Project
+              </button>
+            </div>
+          </div>
+
+          <!-- Project Card 3 -->
+          <div class="carousel-item">
+            <img src="content.png" alt="Content Generator">
+            <div class="card-content">
+              <h3 class="project-title">Content Generator</h3>
+              <p class="project-description">AI-powered content generation platform</p>
+              <button class="view-project-btn" onclick="showProjectModal('https://github.com/nkheso/content-generator', 'https://app--kay-gen-ai-0206c87a.base44.app/')">
+                View Project
+              </button>
+            </div>
+          </div>
+
+          <!-- Project Card 4 -->
+          <div class="carousel-item">
+            <img src="resume g.png" alt="Resume Generator">
+            <div class="card-content">
+              <h3 class="project-title">Resume Generator</h3>
+              <p class="project-description">AI-powered resume generation tool</p>
+              <button class="view-project-btn" onclick="showProjectModal('https://github.com/nkheso/resume-generator', 'https://app--resume-pro-454d6248.base44.app/')">
+                View Project
+              </button>
+            </div>
+          </div>
+
+          <!-- Project Card 5 -->
+          <div class="carousel-item">
+            <img src="prototype.png" alt="Soil Analyzer Prototype">
+            <div class="card-content">
+              <h3 class="project-title">Soil Analyzer Prototype</h3>
+              <p class="project-description">Interactive prototype for soil analysis application</p>
+              <button class="view-project-btn" onclick="showProjectModal('#', 'https://www.figma.com/proto/HIhUfBOLKg3N81VxhaVmqC/Soil-Analyzer?node-id=78-57&t=MVigyzi8PVLN1WNY-1&scaling=scale-down&content-scaling=fixed&page-id=9%3A57&starting-point-node-id=78%3A57')">
+                View Project
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-btn next" id="featured-right">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Project Card 6 -->
+          <div class="carousel-item">
+            <img src="prototype.png" alt="Soil Analyzer Prototype">
+            <div class="card-content">
+              <h3 class="project-title">Soil Analyzer Prototype</h3>
+              <p class="project-description">Interactive prototype for soil analysis application</p>
+              <button class="view-project-btn" onclick="showProjectModal('#', 'https://www.figma.com/proto/HIhUfBOLKg3N81VxhaVmqC/Soil-Analyzer?node-id=78-57&t=MVigyzi8PVLN1WNY-1&scaling=scale-down&content-scaling=fixed&page-id=9%3A57&starting-point-node-id=78%3A57')">
+                View Project
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-btn next" id="featured-right">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+  <!-- Skills Section -->
+  <section id="skills">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 20px;">My Skills</h2>
+      <p style="text-align: center; max-width: 700px; margin: 0 auto 40px;">Here are some of the technologies and tools I work with to create amazing digital experiences.</p>
+      
+      <div class="skills-container">
+        <div class="skill-card">
+          <div class="skill-icon">
+            <i class="fab fa-html5"></i>
+          </div>
+          <h3 class="skill-name">HTML/CSS</h3>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 90%;"></div>
+          </div>
+          <p>Creating responsive and accessible web layouts with modern CSS techniques.</p>
+        </div>
+        
+        <div class="skill-card">
+          <div class="skill-icon">
+            <i class="fab fa-js"></i>
+          </div>
+          <h3 class="skill-name">JavaScript</h3>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 85%;"></div>
+          </div>
+          <p>Building interactive web applications with vanilla JavaScript and modern frameworks.</p>
+        </div>
+        
+        <div class="skill-card">
+          <div class="skill-icon">
+            <i class="fab fa-figma"></i>
+          </div>
+          <h3 class="skill-name">Figma</h3>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 80%;"></div>
+          </div>
+          <p>Designing user interfaces and prototypes with attention to usability and aesthetics.</p>
+        </div>
+        
+        <div class="skill-card">
+          <div class="skill-icon">
+            <i class="fab fa-python"></i>
+          </div>
+          <h3 class="skill-name">Python</h3>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 75%;"></div>
+          </div>
+          <p>Developing backend solutions and automation scripts using Python and its frameworks.</p>
+        </div>
+        
+        <div class="skill-card">
+          <div class="skill-icon">
+            <i class="fab fa-vuejs"></i>
+          </div>
+          <h3 class="skill-name">Vue.js</h3>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 70%;"></div>
+          </div>
+          <p>Building modern, reactive user interfaces with Vue.js framework.</p>
+        </div>
+        
+        <div class="skill-card">
+          <div class="skill-icon">
+            <i class="fab fa-git-alt"></i>
+          </div>
+          <h3 class="skill-name">Git & GitHub</h3>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 85%;"></div>
+          </div>
+          <p>Version control and collaboration using Git and GitHub workflows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section id="certifications">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 20px;">Certifications</h2>
+      <p style="text-align: center; max-width: 700px; margin: 0 auto 40px;">Here are some of the certifications I've achieved through continuous learning and professional development.</p>
+      
+      <div class="certifications-gallery">
+        <img src="khenso.png" alt="Certificate 1">
+        <img src="quiz2.png" alt="Certificate 2">
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 40px;">Experience</h2>
+      <div class="experience-item">
+        <h3>Digital Associate – CAPACITI</h3>
+        <em>July 2025 – Present</em>
+        <p>Gained hands-on experience in AI, web development, and applied machine learning through project-based learning. Built and deployed AI-powered tools like chatbots and dashboards, applied Agile practices and ethical AI, and delivered a capstone portfolio with industry certifications.</p>
+      </div>
+    </div>
+  </section>
+
+<!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-section">
+        <div class="section-header">
+          <h2>Contact Me</h2>
+          <p>I'm always open to discussing new opportunities, creative projects, or potential collaborations.</p>
+          <div class="divider"></div>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Contact Info -->
+          <div class="contact-info">
+            <h3>Get In Touch</h3>
+            <p>Don't hesitate to reach out if you want to collaborate, have questions, or just want to connect!</p>
+
+            <ul class="info-list">
+              <li><strong>Email:</strong> <a href="mailto:mathebulankheso8@gmail.com">mathebulankheso8@gmail.com</a></li>
+              <li><strong>Phone:</strong> <a href="tel:+27836431131">083 643 1131</a></li>
+              <li><strong>Location:</strong> Woodstock, Cape Town, South Africa</li>
+            </ul>
+
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/mathebula-nkheso-26b8b6272/" target="_blank">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://github.com/nkheso" target="_blank">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="mailto:mathebulankheso8@gmail.com">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+
+            <div class="availability">
+              <span class="dot"></span>
+              Available for new projects
+            </div>
+          </div>
+
+  <form id="contact-form" action="https://formspree.io/f/mnnbwzed" method="POST">
+  <div class="form-row">
+    <div class="form-group">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" required placeholder="John Doe" />
+    </div>
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required placeholder="john@example.com" />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="subject">Subject</label>
+    <input type="text" id="subject" name="subject" required placeholder="Project Collaboration" />
+  </div>
+
+  <div class="form-group">
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="5" required placeholder="Your message..."></textarea>
+  </div>
+
+  <button type="submit" class="submit-button">Send Message</button>
+</form>
+
+<!-- Form status message -->
+<p id="form-status"></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="socials">
+        <a href="https://www.linkedin.com/in/mathebula-nkheso-26b8b6272/" target="_blank">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://github.com/nkheso" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="mailto:mathebulankheso8@gmail.com">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+      <div>© 2025 Nkheso Mathebula — All Rights Reserved</div>
+    </div>
+  </footer>
+
+  <!-- Project Links Modal -->
+  <div class="project-links-modal">
+    <div class="modal-content">
+      <h3>View Project</h3>
+      <div class="modal-buttons">
+        <a href="#" class="modal-btn github" target="_blank">
+          <i class="fab fa-github"></i> GitHub Repo
+        </a>
+        <a href="#" class="modal-btn live" target="_blank">
+          <i class="fas fa-external-link-alt"></i> Live Demo
+        </a>
+      </div>
+      <button class="close-modal">×</button>
+    </div>
+  </div>
+
+  <script>
+    // Carousel Navigation
+    document.addEventListener('DOMContentLoaded', function() {
+      const carousel = document.getElementById('featured-carousel');
+      const prevBtn = document.querySelector('#featured-projects .carousel-btn.prev');
+      const nextBtn = document.querySelector('#featured-projects .carousel-btn.next');
+      
+      prevBtn.addEventListener('click', () => {
+        carousel.scrollBy({
+          left: -300,
+          behavior: 'smooth'
+        });
+      });
+      
+      nextBtn.addEventListener('click', () => {
+        carousel.scrollBy({
+          left: 300,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Project Modal functionality
+    function showProjectModal(githubUrl, liveUrl) {
+      const modal = document.querySelector('.project-links-modal');
+      const githubBtn = modal.querySelector('.modal-btn.github');
+      const liveBtn = modal.querySelector('.modal-btn.live');
+      const closeBtn = modal.querySelector('.close-modal');
+
+      githubBtn.href = githubUrl;
+      liveBtn.href = liveUrl;
+      modal.style.display = 'flex';
+
+      closeBtn.onclick = () => {
+        modal.style.display = 'none';
+      };
+
+      window.onclick = (event) => {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      };
+    }
+    
+    // Welcome Animation
+    document.addEventListener('DOMContentLoaded', function() {
+      const welcomeSection = document.getElementById('welcome-animation');
+      const welcomeText = document.querySelector('.welcome-text');
+      const welcomeSubtext = document.querySelector('.welcome-subtext');
+      
+      // Animate welcome text
+      setTimeout(() => {
+        welcomeText.style.opacity = '1';
+        welcomeText.style.transform = 'translateY(0)';
+        welcomeText.style.transition = 'opacity 1s ease, transform 1s ease';
+      }, 500);
+      
+      // Animate subtext
+      setTimeout(() => {
+        welcomeSubtext.style.opacity = '1';
+        welcomeSubtext.style.transition = 'opacity 1s ease';
+      }, 1500);
+      
+      // Hide welcome section and show main content
+      setTimeout(() => {
+        welcomeSection.style.opacity = '0';
+        welcomeSection.style.transition = 'opacity 1s ease';
+        setTimeout(() => {
+          welcomeSection.style.display = 'none';
+        }, 1000);
+      }, 3500);
+    });
+    // Simple form submission handler
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // In a real application, you would send the form data to a server here
+      // For demonstration, we'll just show an alert
+      alert('Thank you for your message! I will get back to you soon.');
+      this.reset();
+    });
+    // =======================
+// Mobile Navbar Toggle
+// =======================
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('nav ul');
+
+hamburger.addEventListener('click', () => {
+  navMenu.classList.toggle('show');
+  hamburger.classList.toggle('active');
+});
+
+// =======================
+// Horizontal Carousels
+// =======================
+function setupCarousel(sectionSelector, leftBtn, rightBtn) {
+  const container = document.querySelector(sectionSelector);
+  const scrollAmount = 300; // pixels per click
+
+  document.querySelector(leftBtn).addEventListener('click', () => {
+    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+
+  document.querySelector(rightBtn).addEventListener('click', () => {
+    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
+}
+
+// Apply to Work and Featured sections
+setupCarousel('#work .work-container', '#work-left', '#work-right');
+setupCarousel('#featured .featured-container', '#featured-left', '#featured-right');
+
+// =======================
+// View Project Modal
+// =======================
+const modal = document.createElement('div');
+modal.className = 'modal';
+modal.innerHTML = `
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>View Project</h3>
+    <a href="#" target="_blank" id="github-link">GitHub Repo</a>
+    <a href="#" target="_blank" id="live-link">Live Project</a>
+  </div>
+`;
+document.body.appendChild(modal);
+
+const closeModal = modal.querySelector('.close');
+closeModal.addEventListener('click', () => modal.style.display = 'none');
+
+document.querySelectorAll('.btn-project').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const github = btn.getAttribute('data-github');
+    const live = btn.getAttribute('data-live');
+
+    modal.querySelector('#github-link').href = github;
+    modal.querySelector('#live-link').href = live;
+    modal.style.display = 'flex';
+  });
+});
+const form = document.getElementById("contact-form");
+const status = document.getElementById("form-status");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const data = new FormData(form);
+
+  try {
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      status.textContent = "✅ Thank you! Your message has been sent.";
+      form.reset();
+    } else {
+      status.textContent = "❌ Oops! Something went wrong. Try again.";
+    }
+  } catch (error) {
+    status.textContent = "⚠️ Network error. Please try again later.";
+  }
+});
+
+  </script>
+</body>
+</html>
